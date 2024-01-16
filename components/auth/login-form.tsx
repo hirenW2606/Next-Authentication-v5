@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import { FromError } from "@/components/form-error"
 import { FromSuccess } from "@/components/form-success"
 import { useState, useTransition } from "react"
+import { useSearchParams } from "next/navigation"
 
 import { 
     Form,
@@ -26,6 +27,10 @@ import { login } from "@/actions/login"
 
 
 export const LoginForm = () => {
+    const searchParams = useSearchParams();
+    const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
+        ? "Email already in use with other provider!" 
+        : "";
 
     const [error, setError] = useState<string | undefined>("");
     const [success, setSuccess] = useState<string | undefined>("");
@@ -43,8 +48,9 @@ export const LoginForm = () => {
         startTransition(() => {
             login(values)
             .then((data) => {
-                setError(data.error);
-                setSuccess(data.success);
+                setError(data?.error);
+                // TODO: Add when we add 2FA
+                // setSuccess(data?.success);
             });
         });
         
@@ -99,7 +105,7 @@ export const LoginForm = () => {
                             )}
                         />
                     </div>
-                    <FromError message={error}/>
+                    <FromError message={error || urlError}/>
                     <FromSuccess message={success}/>
                     <Button
                         disabled={isPending}
