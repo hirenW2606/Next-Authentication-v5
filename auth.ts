@@ -24,6 +24,20 @@ export const {
     }
   },
   callbacks: {
+
+    async signIn({ user, account}) {
+      if (account?.provider !== "credentials") return true;
+
+      const existingUser = await getUserById(user.id);
+
+      // Prevernt sign in without email verificaiton 
+      if(!existingUser?.emailVerified) return false;
+
+
+      //TODO: Add 2fa check
+      return true;
+    },
+
     async session({ token, session }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
