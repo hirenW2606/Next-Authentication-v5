@@ -1,7 +1,6 @@
 # Next Auth v5 - Advanced Guide
 
-![image](![293493179-d0175397-8c3f-4e82-91c4-78c14f29bb81](https://github.com/hirenW2606/Next-Authentication-v5/assets/37996917/c04507cc-5310-4cff-b6ac-71e83f668aa4)
-)
+![293493179-d0175397-8c3f-4e82-91c4-78c14f29bb81](https://github.com/hirenW2606/Next-Authentication-v5/assets/37996917/c04507cc-5310-4cff-b6ac-71e83f668aa4)
 
 This is a repository for Next Auth v5 - Advanced Guide (2024)
 
